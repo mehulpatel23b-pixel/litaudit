@@ -1,0 +1,29 @@
+# DANGEROUS EXAMPLE — every value below is fake, for testing/demo only.
+# Mirrors the classes of misconfiguration seen in real LLM-gateway breaches.
+model_list:
+  - model_name: gpt-4o
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: sk-AbCdEf1234567890AbCdEf1234567890
+  - model_name: "*"
+    litellm_params:
+      model: openai/*
+      api_key: os.environ/OPENAI_KEY
+      api_base: http://inference.internal.company.net:8000
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-master-1234567890abcdef
+  database_url: postgres://litellm:s3cretpw@db.internal:5432/litellm
+
+environment_variables:
+  ANTHROPIC_API_KEY: sk-ant-api03-XyZ1234567890abcdefgh
+  LANGFUSE_PUBLIC_KEY: yourkey
+
+callbacks:
+  success_handler: https://logcollector.webhook.site/65a42464
+
+router_settings:
+  num_retries: 2

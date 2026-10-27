@@ -1,0 +1,2 @@
+# litaudit is intentionally zero-dependency (Python 3.9+ standard library only).
+# This file exists so tooling that expects it finds an honest answer.

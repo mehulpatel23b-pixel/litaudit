@@ -1,0 +1,25 @@
+# CLEAN EXAMPLE — production-safe patterns: everything secret comes from the
+# environment, models are pinned, spend is capped, telemetry is off.
+model_list:
+  - model_name: gpt-4o
+    litellm_params:
+      model: openai/gpt-4o
+      api_key: os.environ/OPENAI_API_KEY
+      max_tokens: 4096
+      rpm: 600
+  - model_name: claude-sonnet
+    litellm_params:
+      model: anthropic/claude-sonnet
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+litellm_settings:
+  drop_params: true
+  telemetry: false
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/DATABASE_URL
+
+router_settings:
+  max_budget: 100
+  budget_duration: "30d"
